@@ -20,18 +20,32 @@ const createTravelCard = ({ img, title, description }) => {
 
     card.appendChild(imgEl);
     card.appendChild(cardContent);
-    
+
     return card;
 }
 
 window.addEventListener('DOMContentLoaded', event => {
     const content = document.getElementById('travel-cards');
+    const search = document.getElementById('search');
+
     for (let i = 0; i < 10; i++) {
         const card = createTravelCard({
-            img: 'https://www.adorama.com/alc/wp-content/uploads/2018/11/landscape-photography-tips-yosemite-valley-feature.jpg', 
-            title: "hello", 
-            description: "testest" 
+            img: 'https://www.adorama.com/alc/wp-content/uploads/2018/11/landscape-photography-tips-yosemite-valley-feature.jpg',
+            title: "hello",
+            description: "testest"
         });
         content.appendChild(card);
     }
+
+    search.addEventListener('keydown', event => {
+        if (event.key == "Enter") {
+            const elements = content.getElementsByTagName('div');
+            for (let i = 0; i < elements.length; i++) {
+                const child = elements[i];
+                const tmpTitle = child.querySelector('h1').textContent;
+                debugger;
+                child.style.display = !search.value.includes(tmpTitle) ? 'none' : '';
+            }
+        }
+    });
 });
