@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet"> 
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='style.css' rel='stylesheet'> 
     <title>Trip blog</title>
 </head>
 
 <body>
-    <div class="header flex-left">
-        <h1 class="main-title">Write your story</h1>
+    <div class='header flex-left'>
+        <h1 class='main-title'>Write your story</h1>
     </div>
 
-    <div class="bottom-nav flex-center">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
+    <div class='bottom-nav flex-center'>
+        <a href='#'>Link</a>
+        <a href='#'>Link</a>
+        <a href='#'>Link</a>
     </div>
 
-    <div class="wrapper">
-        <select class="form-element" name="order" id="order">
-            <option value="date-asc">Date asc</option>
-            <option value="date-desc">Date desc</option>
-            <option value="title-asc">Title asc</option>
-            <option value="title-desc">Title desc</option>
+    <div class='wrapper'>
+        <div>
+            <button id='generate'>Generate</button>
+            <button id='save'>Save</button>
+            <button id='load'>Load</button>
+        </div>
+        <select class='form-element' name='order' id='order'>
+            <option value='date-asc'>Date asc</option>
+            <option value='date-desc'>Date desc</option>
+            <option value='title-asc'>Title asc</option>
+            <option value='title-desc'>Title desc</option>
         </select>
-        <input class="form-element" id="search" />
-        <div id="travel-cards"></div>
+        <input class='form-element' id='search' />
+        <div id='travel-cards'></div>
     </div>
 
-    <script src="./utils/data.js"></script>
-    <script src="./utils/actions.js"></script>
-    <script src="./app.js"></script>
+    <script src='./utils/data.js'></script>
+    <script src='./utils/actions.js'></script>
+    <script src='./app.js'></script>
 </body>
 
 </html>

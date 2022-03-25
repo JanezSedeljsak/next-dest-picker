@@ -19,8 +19,10 @@ class DOMActions {
         this.content = content;
         this.search = search;
         this.order = order;
+        this.elements = elements;
 
-        this.elements = DOMActions._addIdentifiers(elements);
+        const [status, data] = this._getFromStorage();
+        if (status) this.elements = data;
         this.redraw();
     }
 
@@ -52,8 +54,15 @@ class DOMActions {
         return card;
     }
 
+    _getFromStorage() {
+        const data = localStorage.getItem('data');
+        return data !== null ? [true, JSON.parse(data)] : [false, []];        
+    }
+
     redraw() {
         this.content.innerHTML = '';
+        this.elements = DOMActions._addIdentifiers(this.elements);
+
         const sorted = DOMActions._sort(this.elements);
         const filtered = DOMActions._filter(sorted, this.search.value.toLowerCase());
 
@@ -64,8 +73,25 @@ class DOMActions {
     }
 
     delete(identifier) {
-        debugger;
         this.elements = this.elements.filter(el => el.identifier !== identifier);
+        this.redraw();
+    }
+
+    save() {
+        const str = JSON.stringify(this.elements);
+        localStorage.setItem('data', str);
+    }
+
+    load() {
+        const [status, data] = this._getFromStorage();
+        if (status) {
+            this.elements = data;
+            this.redraw();
+        }
+    }
+
+    mock(data) {
+        this.elements = [...this.elements, ...data];
         this.redraw();
     }
 }
