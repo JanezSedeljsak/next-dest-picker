@@ -21,10 +21,18 @@
     </div>
 
     <div class="wrapper">
-        <input id="search" />
+        <select class="form-element" name="order" id="order">
+            <option value="date-asc">Date asc</option>
+            <option value="date-desc">Date desc</option>
+            <option value="title-asc">Title asc</option>
+            <option value="title-desc">Title desc</option>
+        </select>
+        <input class="form-element" id="search" />
         <div id="travel-cards"></div>
     </div>
 
+    <script src="./utils/data.js"></script>
+    <script src="./utils/actions.js"></script>
     <script src="./app.js"></script>
 </body>
 

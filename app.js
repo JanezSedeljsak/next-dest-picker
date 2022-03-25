@@ -1,51 +1,18 @@
 'use strict';
 
-const createTravelCard = ({ img, title, description }) => {
-    const card = document.createElement("div");
-    card.className = 'card';
-
-    const imgEl = document.createElement("img");
-    imgEl.src = img;
-    imgEl.alt = "banner image";
-
-    const titleEl = document.createElement("h1");
-    titleEl.textContent = title;
-
-    const descriptionEl = document.createElement("p");
-    descriptionEl.textContent = description;
-
-    const cardContent = document.createElement("div");
-    cardContent.appendChild(titleEl);
-    cardContent.appendChild(descriptionEl);
-
-    card.appendChild(imgEl);
-    card.appendChild(cardContent);
-
-    return card;
-}
-
-window.addEventListener('DOMContentLoaded', event => {
+window.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('travel-cards');
     const search = document.getElementById('search');
-
-    for (let i = 0; i < 10; i++) {
-        const card = createTravelCard({
-            img: 'https://www.adorama.com/alc/wp-content/uploads/2018/11/landscape-photography-tips-yosemite-valley-feature.jpg',
-            title: "hello",
-            description: "testest"
-        });
-        content.appendChild(card);
-    }
+    const order = document.getElementById('order');
+    const actions = new DOMActions(content, data, search, order);
 
     search.addEventListener('keydown', event => {
         if (event.key == "Enter") {
-            const elements = content.getElementsByTagName('div');
-            for (let i = 0; i < elements.length; i++) {
-                const child = elements[i];
-                const tmpTitle = child.querySelector('h1').textContent;
-                debugger;
-                child.style.display = !search.value.includes(tmpTitle) ? 'none' : '';
-            }
+            actions.redraw();
         }
+    });
+
+    order.addEventListener('change', event => {
+        actions.redraw(event.target.value);
     });
 });
