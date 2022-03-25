@@ -99,6 +99,11 @@ body {
     padding: 0 2.5em 0 0.5em;
 }
 
+/* hidden element for storing identifier of element */
+.identifier {
+    display: none !important;
+}
+
 @media screen and (max-width:600px) {
     
 }
