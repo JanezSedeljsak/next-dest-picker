@@ -5,38 +5,35 @@
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link href='style.css' rel='stylesheet'> 
-    <title>Trip blog</title>
+    <link href='style.css' rel='stylesheet'>
+    <title>Destination picker</title>
 </head>
 
 <body>
     <div class='header flex-left'>
-        <h1 class='main-title'>Write your story</h1>
+        <h1 class='main-title'>Go with the flow and visit a random country</h1>
     </div>
 
-    <div class='bottom-nav flex-center'>
-        <a href='#'>Link</a>
-        <a href='#'>Link</a>
-        <a href='#'>Link</a>
-    </div>
+    <nav class='top-nav flex-center'>
+        <a id='pick-random' title='Get random location'>Get random</a>
+        <a id='save-selection' title='Save current locations'>Save selection</a>
+        <a id='spin' title='Spin the wheel'>Spin the wheel</a>
+        <a id='clear' title='Clear all data'>Clear data</a>
+    </nav>
 
-    <div class='wrapper'>
-        <div>
-            <button id='generate'>Generate</button>
-            <button id='save'>Save</button>
-            <button id='load'>Load</button>
-        </div>
+    <div class='container'>
         <select class='form-element' name='order' id='order'>
-            <option value='date-asc'>Date asc</option>
-            <option value='date-desc'>Date desc</option>
-            <option value='title-asc'>Title asc</option>
-            <option value='title-desc'>Title desc</option>
+            <option value='name-asc'>Country name - asc</option>
+            <option value='name-desc'>Country name - desc</option>
+            <option value='region-asc'>Region - asc</option>
+            <option value='region-desc'>Region - desc</option>
         </select>
-        <input class='form-element' id='search' />
+        <input placeholder='Filter destinations' class='form-element' id='search' />
+
+        <span id='info'></span>
         <div id='travel-cards'></div>
     </div>
 
-    <script src='./utils/data.js'></script>
     <script src='./utils/actions.js'></script>
     <script src='./app.js'></script>
 </body>

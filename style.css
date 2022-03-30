@@ -2,7 +2,9 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fredoka', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 ::-webkit-scrollbar {
@@ -10,19 +12,12 @@
 }
 
 body {
-    margin: 0;
-    background-color: #ccc;
+    background-color: #eee;
 }
 
 .main-title {
-    font-family: 'Fredoka', sans-serif;
     color: #333;
     font-size: 80px;
-}
-
-.quote {
-    color: white;
-    font-family: 'Parisienne', cursive;
 }
 
 .flex-center {
@@ -39,35 +34,48 @@ body {
 
 .header {
     background-image: url('./utils/imgs/wallpaper.webp');
+    background-attachment: fixed;
     background-size: cover;
     padding: 20px;
     text-align: center;
-    height: 100vh;
+    height: calc(100vh - 50px);
 }
 
-.bottom-nav {
+nav {
     position: sticky;
-    bottom: 0px;
     width: 100vw;
     overflow: hidden;
     background-color: #333;
+    top: 0px;
+    height: 50px;
 }
 
-.wrapper {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    width: 80%;
+    min-width: 400px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.bottom-nav a {
+a {
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav a {
     float: left;
     display: block;
-    color: #f2f2f2;
-    text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
+    color: #f2f2f2;
+}
+
+a:hover,.del-button:hover {
+    color: #aaa;
 }
 
 .card {
@@ -76,34 +84,88 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 2px 2px gray;
-    width: 900px;
     margin-bottom: 10px;
 }
 
-.card > img {
+.card-content {
+    min-height: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px;
+}
+
+.card-content > * {
+    padding: 15px 10px;
+    width: 100%;
+}
+
+.card>img {
     object-fit: cover;
-    height: 300px;
-    width: 300px;
     border-radius: 10px 50% 50% 10px;
     margin-right: 15px;
+    transition: .1s ease-in-out;
+}
+
+.card>img:hover {
+    border-radius: 10px 30% 30% 10px;
 }
 
 .form-element {
-    width: 900px;
-    border-radius: 15px;
-    height: 30px;
-    font-size: 16px;
+    width: 100%;
+    padding: 5px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 34px;
+    height: 36px;
     border: none;
-    outline: none;
-    margin-bottom: 20px;
-    padding: 0 2.5em 0 0.5em;
+    border-radius: 15px;
 }
 
-/* hidden element for storing identifier of element */
-.identifier {
-    display: none !important;
+.del-button {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    height: 36px;
+    color: white;
+    background-color: #dc3545;
+    padding: 0 18px;
 }
 
-@media screen and (max-width:600px) {
-    
+#travel-cards {
+    width: 100%;
 }
+
+#info {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: left
+}
+
+.spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #aaa;
+    border-radius: 50%;
+    border-top-color: #28719b;
+    animation: spin 1s ease-in-out infinite;
+    margin: 20px;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width:600px) {}
