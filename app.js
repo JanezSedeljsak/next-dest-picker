@@ -11,25 +11,22 @@ window.addEventListener('DOMContentLoaded', () => {
     const pickRandom = document.querySelector('#pick-random');
     const clear = document.querySelector('#clear');
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-            window.userLocation = pos?.coords;
-            actions.redraw();
-        }, showGeolocationError);
-    }
-
-    const actions = new DOMActions(content, search, order, info, window);
+    const actions = new DOMActions(content, search, order, info);
     search.addEventListener('keydown', event => {
         if (event.key == "Enter") {
-            actions.redraw();
+            actions.render();
         }
     });
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            actions.setGeolocation(pos?.coords);
+            actions.render();
+        }, showGeolocationError);
+    }
 
     saveSelection.addEventListener('click', () => actions.save());
     pickRandom.addEventListener('click', () => actions.random());
     clear.addEventListener('click', () => actions.clear());
-
-    order.addEventListener('change', event => {
-        actions.redraw(event.target.value);
-    });
+    order.addEventListener('change', () => actions.render());
 });

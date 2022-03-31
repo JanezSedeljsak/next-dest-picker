@@ -39,25 +39,24 @@ class DOMActions {
         };
     }
 
-    constructor(content, search, order, info, window) {
+    constructor(content, search, order, info) {
         this.content = content;
         this.search = search;
         this.order = order;
         this.elements = [];
         this.info = info;
-        this.window = window;
 
         const [status, data] = DOMActions._getFromStorage();
         if (status) this.elements = data;
-        this.redraw();
+        this.render();
     }
 
     _createTravelCard({ img, name, region, capital, geolocation, idx }) {
         const div = document.createElement('div');
 
         let travelTo = ``;
-        if (window?.userLocation) {
-            const { latitude, longitude } = window.userLocation;
+        if (this?.geolocation) {
+            const { latitude, longitude } = this.geolocation;
             const url = `https://www.google.com/maps/dir/${latitude},${longitude}/${capital}`;
             travelTo = `<p><a target='_blank' href='${url}'>Travel to ${capital}</a></p>`;
         }
@@ -95,7 +94,7 @@ class DOMActions {
         this.info.style.color = this.visible.length === numForWheel ? 'green' : 'red';
     }
 
-    redraw() {
+    render() {
         const sorted = DOMActions._sort(this.elements, this.order.value);
         const filtered = DOMActions._filter(sorted, this.search.value.toLowerCase());
 
@@ -111,7 +110,7 @@ class DOMActions {
 
     delete(idx) {
         this.elements.splice(idx, 1);
-        this.redraw();
+        this.render();
     }
 
     save() {
@@ -121,19 +120,23 @@ class DOMActions {
 
     clear() {
         this.elements = [];
-        this.redraw();
+        this.render();
+    }
+
+    setGeolocation(geolocation) {
+        this.geolocation = geolocation;
     }
 
     async random() {
         const loading = document.createElement('div');
-        loading.className = 'spinner';
+        loading.className = 'lds-dual-ring';
         document.querySelector('#spinner-container').appendChild(loading);
 
         while (true) {
             const picked = await DOMActions._fetchRandom();
             if (!this.elements.some(el => el.name === picked.name)) {
                 this.elements.push(picked);
-                this.redraw();
+                this.render();
                 break;
             }
         }
