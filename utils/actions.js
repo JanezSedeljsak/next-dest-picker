@@ -187,7 +187,7 @@ class DOMActions {
         wheel.className = 'spin-the-wheel';
         div.appendChild(wheel);
 
-        this.elements.forEach(el => {
+        this.visible.forEach(el => {
             const option = document.createElement('div');
             option.className = 'flex-center';
             option.style.backgroundImage = `url('${el.img}')`;
@@ -200,7 +200,7 @@ class DOMActions {
         document.documentElement.style.setProperty('--rotation', `${rotation}deg`);
         document.body.appendChild(div);
         setTimeout(() => {
-            alert(`Looks like you're going to visit: ${this.elements[winner].name}`);
+            alert(`Looks like you're going to visit: ${this.visible[winner].name}`);
             div.remove();
         }, 4200);
     }
