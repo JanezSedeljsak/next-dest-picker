@@ -31,7 +31,8 @@
             <option value='region-asc'>Region - asc</option>
             <option value='region-desc'>Region - desc</option>
         </select>
-        <input placeholder='Filter destinations' class='form-element' id='search' />
+        <input onkeydown="return /[A-Za-z]/i.test(event.key)" id='search' placeholder='Filter destinations'
+            class='form-element' />
         <div style='width: 100%;' class='flex-left'>
             <button id='spin'>Spin the wheel</button>
         </div>
