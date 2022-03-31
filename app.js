@@ -11,15 +11,20 @@ window.addEventListener('DOMContentLoaded', () => {
     const pickRandom = document.querySelector('#pick-random');
     const clear = document.querySelector('#clear');
 
-    const actions = new DOMActions(content, search, order, info);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            window.userLocation = pos?.coords;
+            actions.redraw();
+        }, showGeolocationError);
+    }
 
+    const actions = new DOMActions(content, search, order, info, window);
     search.addEventListener('keydown', event => {
         if (event.key == "Enter") {
             actions.redraw();
         }
     });
 
-    // load.addEventListener('click', () => actions.load());
     saveSelection.addEventListener('click', () => actions.save());
     pickRandom.addEventListener('click', () => actions.random());
     clear.addEventListener('click', () => actions.clear());

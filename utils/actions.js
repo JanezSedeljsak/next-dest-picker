@@ -39,12 +39,13 @@ class DOMActions {
         };
     }
 
-    constructor(content, search, order, info) {
+    constructor(content, search, order, info, window) {
         this.content = content;
         this.search = search;
         this.order = order;
         this.elements = [];
         this.info = info;
+        this.window = window;
 
         const [status, data] = DOMActions._getFromStorage();
         if (status) this.elements = data;
@@ -52,19 +53,23 @@ class DOMActions {
     }
 
     _createTravelCard({ img, name, region, capital, geolocation, idx }) {
-        var div = document.createElement('div');
+        const div = document.createElement('div');
+
+        let travelTo = ``;
+        if (window?.userLocation) {
+            const { latitude, longitude } = window.userLocation;
+            const url = `https://www.google.com/maps/dir/${latitude},${longitude}/${capital}`;
+            travelTo = `<p><a target='_blank' href='${url}'>Travel to ${capital}</a></p>`;
+        }
+
         div.innerHTML = `
             <div class='card'>
                 <img src='${img}'/>
                 <div class='card-content'>
                     <div>
                         <h1>${name}</h1>
-                        <hr/>
-                        ${('geolocation' in navigator) ?
-                            `<p><a target='_blank' href='${geolocation}'>Google maps for ${name}</a></p>`
-                            : ''
-                        }
-                        <p><a target='_blank' href='${geolocation}'>Flights to ${name}</a></p>
+                        ${travelTo}
+                        <p><a target='_blank' href='${geolocation}'>Google maps</a></p>
                         <p>Capital: <b>${capital}</b></p>
                         <p>Region: <b>${region}</b></p>
                     </div>
@@ -85,8 +90,9 @@ class DOMActions {
     }
 
     _setInfo() {
-        this.info.textContent = `You have selected ${this.visible.length}/5 countries!`;
-        this.info.style.color = this.visible.length === 5 ? 'green' : 'red';
+        const numForWheel = 6;
+        this.info.textContent = `You have selected ${this.visible.length}/${numForWheel} countries!`;
+        this.info.style.color = this.visible.length === numForWheel ? 'green' : 'red';
     }
 
     redraw() {
@@ -121,7 +127,7 @@ class DOMActions {
     async random() {
         const loading = document.createElement('div');
         loading.className = 'spinner';
-        this.content.prepend(loading);
+        document.querySelector('#spinner-container').appendChild(loading);
 
         while (true) {
             const picked = await DOMActions._fetchRandom();
@@ -131,5 +137,7 @@ class DOMActions {
                 break;
             }
         }
+
+        loading.remove();
     }
 }
