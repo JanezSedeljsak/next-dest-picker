@@ -6,12 +6,12 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link href='style.css' rel='stylesheet'>
-    <link rel="icon" type="image/x-icon" href="utils/imgs/favicon.ico">
+    <link rel='icon' type='image/x-icon' href='utils/imgs/favicon.ico'>
     <title>Destination picker</title>
 </head>
 
 <body>
-    <div class='header flex-left'>
+    <div class='header flex-center'>
         <h1 class='main-title'>Take a risk and explore!</h1>
     </div>
 
@@ -19,7 +19,8 @@
         <a id='pick-random' title='Get random location'>Get random</a>
         <a id='save-selection' title='Save current locations'>Save</a>
         <a id='clear' title='Clear all data'>Clear</a>
-        <a href="https://github.com/janezsedeljsak/next-dest-picker/" title='Show documentation and sources'>Documentation</a>
+        <a href='https://github.com/janezsedeljsak/next-dest-picker/' target='_blank'
+            title='Show documentation and sources'>Documentation</a>
     </nav>
 
     <div class='container flex-center'>
@@ -30,6 +31,9 @@
             <option value='region-desc'>Region - desc</option>
         </select>
         <input placeholder='Filter destinations' class='form-element' id='search' />
+        <div style='width: 100%;' class='flex-left'>
+            <button id='spin'>Spin the wheel</button>
+        </div>
 
         <span id='info'></span>
         <div id='spinner-container'>

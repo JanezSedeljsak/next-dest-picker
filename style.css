@@ -20,7 +20,7 @@ body {
     --content-background: #f1f1f1;
     --text-color: #333;
     --border-radius: 5px;
-    --spinner-color: #1c979b;
+    --primary-blue: #1c979b;
 }
 
 .main-title {
@@ -35,7 +35,7 @@ body {
 
 .flex-left {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -67,10 +67,11 @@ nav {
     padding-top: 15px;
 }
 
-a {
+a, a:active, a:focus {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 nav a {
@@ -106,7 +107,7 @@ a:hover, .card-content a:hover {
 }
 
 .card-content a {
-    color: var(--spinner-color);
+    color: var(--primary-blue);
 }
 
 .card img {
@@ -132,14 +133,27 @@ a:hover, .card-content a:hover {
     background-color: var(--content-background);
 }
 
-.del-button {
+button {
     border: 1px solid transparent;
     border-radius: var(--border-radius);
     height: 36px;
     color: white;
-    background-color: #dc3545;
     transition: .1s ease-in-out;
     padding: 0 18px;
+    margin: 5px 0;
+}
+
+button#spin {
+    background-color: var(--primary-blue);
+}
+
+button#spin:hover {
+    cursor: pointer;
+    background-color: #0d595c;
+}
+
+.del-button {
+    background-color: #dc3545;
 }
 
 .del-button:hover {
@@ -176,8 +190,8 @@ a:hover, .card-content a:hover {
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid var(--spinner-color);
-    border-color: var(--spinner-color) transparent var(--spinner-color) transparent;
+    border: 6px solid var(--primary-blue);
+    border-color: var(--primary-blue) transparent var(--primary-blue) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
 

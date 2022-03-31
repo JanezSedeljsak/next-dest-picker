@@ -130,7 +130,15 @@ class DOMActions {
     async random() {
         const loading = document.createElement('div');
         loading.className = 'lds-dual-ring';
-        document.querySelector('#spinner-container').appendChild(loading);
+
+        if (this?.loading) {
+            alert('Already loading country!');
+            return;
+        }
+
+        const spinnerContainer = document.querySelector('#spinner-container');
+        spinnerContainer.appendChild(loading);
+        this.loading = true;
 
         while (true) {
             const picked = await DOMActions._fetchRandom();
@@ -141,6 +149,7 @@ class DOMActions {
             }
         }
 
+        this.loading = false;
         loading.remove();
     }
 }
