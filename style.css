@@ -40,7 +40,7 @@ body {
 }
 
 .header {
-    background-image: url('https://wallpaperaccess.com/full/3490537.jpg');
+    background-image: url('./utils/imgs/wallpaper.webp');
     background-attachment: fixed;
     background-size: cover;
     padding: 20px;
@@ -54,7 +54,8 @@ nav {
     overflow: hidden;
     background-color: #333;
     top: 0px;
-    height: 50px;
+    height: fit-content;
+    min-height: 50px;
 }
 
 .container {
@@ -73,13 +74,12 @@ a {
 }
 
 nav a {
-    float: left;
     display: block;
     padding: 14px 16px;
     color: var(--content-background);
 }
 
-a:hover {
+a:hover, .card-content a:hover {
     color: #aaa;
 }
 
@@ -103,6 +103,10 @@ a:hover {
 .card-content>* {
     padding: 15px 10px;
     width: 100%;
+}
+
+.card-content a {
+    color: var(--spinner-color);
 }
 
 .card img {

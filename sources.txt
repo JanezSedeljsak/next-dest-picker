@@ -1,5 +1,0 @@
-GEOLOCATION: https://www.w3schools.com/html/html5_geolocation.asp
-API: https://restcountries.com
-ICON: https://i.pinimg.com/originals/4a/a5/34/4aa534605d1afc465c5bdc5dd80f1ecb.png
-BANNER: https://wallpaperaccess.com/full/3490537.jpg
-SPINNER: https://loading.io/css/
