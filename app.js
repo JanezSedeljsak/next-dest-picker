@@ -10,13 +10,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const saveSelection = document.querySelector('#save-selection');
     const pickRandom = document.querySelector('#pick-random');
     const clear = document.querySelector('#clear');
+    const spinAction = document.querySelector('#spin');
 
     const actions = new DOMActions(content, search, order, info);
-    search.addEventListener('keydown', event => {
-        if (event.key == "Enter") {
-            actions.render();
-        }
-    });
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
@@ -28,5 +24,11 @@ window.addEventListener('DOMContentLoaded', () => {
     saveSelection.addEventListener('click', () => actions.save());
     pickRandom.addEventListener('click', () => actions.random());
     clear.addEventListener('click', () => actions.clear());
+    spinAction.addEventListener('click', () => actions.spinTheWheel());
     order.addEventListener('change', () => actions.render());
+    search.addEventListener('keydown', event => {
+        if (event.key == "Enter") {
+            actions.render();
+        }
+    });
 });

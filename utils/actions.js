@@ -21,15 +21,33 @@ class DOMActions {
         return elements.filter(el => el.name.toLowerCase().includes(query));
     }
 
-    static _getFromStorage() {
-        const data = localStorage.getItem('data');
+    static _winnerFromRotation(deg) {
+        const offset = Math.floor((deg % 360) / 90);
+        const offsetToIndex = {0: 0, 1: 2, 2: 3, 3: 1};
+        return offsetToIndex[`${offset}`];
+    }
+
+    static _getFromStorage(key) {
+        const data = localStorage.getItem(key);
         return data !== null ? [true, JSON.parse(data)] : [false, []];
     }
 
-    static async _fetchRandom() {
+    static async _getAndCacheCountries() {
+        const [status, countries] = DOMActions._getFromStorage('countries');
+        if (status) {
+            await sleep(500); // smoother behavior
+            return countries;
+        }
+
         const response = await fetch('https://restcountries.com/v3.1/all');
-        const countries = await response.json();
-        const randomCountry = countries[Math.floor(Math.random() * countries.length)];
+        const data = await response.json();
+        localStorage.setItem('countries', JSON.stringify(data));
+        return data;
+    }
+
+    static async _fetchRandom() {
+        const countries = await DOMActions._getAndCacheCountries();
+        const randomCountry = countries[randInt(countries.length)];
         return {
             name: randomCountry?.name?.common,
             img: randomCountry?.flags?.png,
@@ -46,7 +64,7 @@ class DOMActions {
         this.elements = [];
         this.info = info;
 
-        const [status, data] = DOMActions._getFromStorage();
+        const [status, data] = DOMActions._getFromStorage('data');
         if (status) this.elements = data;
         this.render();
     }
@@ -89,7 +107,10 @@ class DOMActions {
     }
 
     _setInfo() {
-        const numForWheel = 6;
+        const numForWheel = 4;
+        const spinBtn = document.querySelector('#spin');
+        spinBtn.disabled = this.visible.length !== numForWheel;
+
         this.info.textContent = `You have selected ${this.visible.length}/${numForWheel} countries!`;
         this.info.style.color = this.visible.length === numForWheel ? 'green' : 'red';
     }
@@ -151,5 +172,36 @@ class DOMActions {
 
         this.loading = false;
         loading.remove();
+    }
+    
+    spinTheWheel() {
+        const div = document.createElement('div');
+        div.setAttribute('id', 'wheel-container');
+        div.className = 'modal-wrapper flex-center';
+
+        const arrow = document.createElement('div');
+        arrow.className = `arrow`;
+        div.appendChild(arrow);
+
+        const wheel = document.createElement('div');
+        wheel.className = 'spin-the-wheel';
+        div.appendChild(wheel);
+
+        this.elements.forEach(el => {
+            const option = document.createElement('div');
+            option.className = 'flex-center';
+            option.style.backgroundImage = `url('${el.img}')`;
+            wheel.appendChild(option);
+        });
+        
+        const rotation = randInt(720) + 720;
+        const winner = DOMActions._winnerFromRotation(rotation);
+
+        document.documentElement.style.setProperty('--rotation', `${rotation}deg`);
+        document.body.appendChild(div);
+        setTimeout(() => {
+            alert(`Looks like you're going to visit: ${this.elements[winner].name}`);
+            div.remove();
+        }, 4200);
     }
 }

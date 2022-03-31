@@ -1,3 +1,5 @@
+'use strict';
+
 function showGeolocationError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
@@ -13,4 +15,12 @@ function showGeolocationError(error) {
             alert("An unknown error occurred.");
             return;
     }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function randInt(max) {
+    return Math.floor(Math.random() * max);
 }

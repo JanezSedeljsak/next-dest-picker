@@ -24,7 +24,9 @@ body {
 }
 
 .main-title {
+    color: white;
     font-size: 4em;
+    text-shadow: 2px 2px var(--text-color);
 }
 
 .flex-center {
@@ -40,9 +42,10 @@ body {
 }
 
 .header {
-    background-image: url('./utils/imgs/wallpaper.webp');
+    background-image: url('../imgs/wallpaper.jpg');
     background-attachment: fixed;
     background-size: cover;
+    background-position: center;
     padding: 20px;
     text-align: center;
     height: calc(100vh - 50px);
@@ -67,7 +70,9 @@ nav {
     padding-top: 15px;
 }
 
-a, a:active, a:focus {
+a,
+a:active,
+a:focus {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -80,7 +85,8 @@ nav a {
     color: var(--content-background);
 }
 
-a:hover, .card-content a:hover {
+a:hover,
+.card-content a:hover {
     color: #aaa;
 }
 
@@ -141,6 +147,12 @@ button {
     transition: .1s ease-in-out;
     padding: 0 18px;
     margin: 5px 0;
+}
+
+button[disabled] {
+    pointer-events: none;
+    background-color: #999 !important;
+    color: #666 !important;
 }
 
 button#spin {
