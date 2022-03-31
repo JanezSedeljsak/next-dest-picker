@@ -70,16 +70,14 @@ nav {
     padding-top: 15px;
 }
 
-a,
-a:active,
-a:focus {
+a {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     color: var(--text-color);
 }
 
-nav a {
+nav a, nav a:visited, nav a:active {
     display: block;
     padding: 14px 16px;
     color: var(--content-background);
@@ -87,7 +85,7 @@ nav a {
 
 a:hover,
 .card-content a:hover {
-    color: #aaa;
+    color: #aaa !important;
 }
 
 .card {
@@ -112,7 +110,7 @@ a:hover,
     width: 100%;
 }
 
-.card-content a {
+.card-content a, .card-content a:visited {
     color: var(--primary-blue);
 }
 

@@ -1,6 +1,6 @@
 # Next destination picker
 
-Project was built using `Vanilla JS`.
+Project was built using only `Vanilla JS`.
 
 ## Sources
 - [GEOLOCATION](https://www.w3schools.com/html/html5_geolocation.asp)
