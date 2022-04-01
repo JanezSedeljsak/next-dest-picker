@@ -148,7 +148,7 @@ class DOMActions {
 
     delete(idx) {
         for (let i = 0; i < this.elements.length; i++) {
-            if (this.elements[idx].name === this.visible[idx].name) {
+            if (this.elements[i].name === this.visible[idx].name) {
                 this.elements.splice(i, 1);
                 this.render();
                 return true;
