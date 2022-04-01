@@ -52,7 +52,7 @@ class DOMActions {
             if (name === null) return false;
             
             if (name.includes(query) && !seen.has(name)) {
-                debugger;
+                // debugger;
                 return true;
             }
 
