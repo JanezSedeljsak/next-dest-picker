@@ -63,12 +63,12 @@ class DOMActions {
             alert(`There is no country that contains ${query}`);
             return null;
         }
-
+        
         const randomCountry = filtered[randInt(filtered.length)];
         return {
             name: randomCountry?.name?.common,
             img: randomCountry?.flags?.png,
-            capital: randomCountry?.capital[0],
+            capital: randomCountry?.capital ? randomCountry?.capital[0] : randomCountry?.name?.common,
             region: randomCountry?.region,
             geolocation: randomCountry?.maps?.googleMaps
         };
