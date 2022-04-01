@@ -45,9 +45,26 @@ class DOMActions {
         return data;
     }
 
-    static async _fetchRandom() {
+    static async _fetchRandom(query, seen) {
         const countries = await DOMActions._getAndCacheCountries();
-        const randomCountry = countries[randInt(countries.length)];
+        const filtered = countries.filter(country => {
+            const name = country?.name?.common?.toLowerCase() ?? null;
+            if (name === null) return false;
+            
+            if (name.includes(query) && !seen.has(name)) {
+                debugger;
+                return true;
+            }
+
+            return false;
+        });
+
+        if (filtered.length === 0) {
+            alert(`There is no country that contains ${query}`);
+            return null;
+        }
+
+        const randomCountry = filtered[randInt(filtered.length)];
         return {
             name: randomCountry?.name?.common,
             img: randomCountry?.flags?.png,
@@ -161,13 +178,11 @@ class DOMActions {
         spinnerContainer.appendChild(loading);
         this.loading = true;
 
-        while (true) {
-            const picked = await DOMActions._fetchRandom();
-            if (!this.elements.some(el => el.name === picked.name)) {
-                this.elements.push(picked);
-                this.render();
-                break;
-            }
+        const seen = new Set(this.elements.map(el => el.name.toLowerCase()));
+        const picked = await DOMActions._fetchRandom(this.search.value.toLowerCase(), seen);
+        if (picked !== null) {
+            this.elements.push(picked);
+            this.render();
         }
 
         this.loading = false;

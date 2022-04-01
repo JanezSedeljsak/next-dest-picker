@@ -11,10 +11,10 @@ Project was built using only `Vanilla JS`.
 - [ROTATION](https://stackoverflow.com/questions/16771225/css3-rotate-animation)
 
 ## Features
-- Get random country by clicking "Get random"
+- Get random country by clicking "Get country" (can't add duplicates and new country has to match query in search input)
 - Store current selection to `LocalStorage` with "Save"
 - Clear data with "Clear"
-- Filtering countries with a search input
+- Filtering countries with a search input (only allows letter inputs on PC)
 - Sorting countries by name/region (asc/desc)
 - Get location of country by clicking "Google maps"
 - Get path from current location to country by clicking "Travel to `{countryName}`" (geolocation has to be enabled)
