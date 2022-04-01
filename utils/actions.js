@@ -147,8 +147,16 @@ class DOMActions {
     }
 
     delete(idx) {
-        this.elements.splice(idx, 1);
-        this.render();
+        for (let i = 0; i < this.elements.length; i++) {
+            if (this.elements[idx].name === this.visible[idx].name) {
+                this.elements.splice(i, 1);
+                this.render();
+                return true;
+            }
+        }
+
+        alert('The country you want to delete was not found!');
+        return false;
     }
 
     save() {
