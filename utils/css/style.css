@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: var(--body-background);
 }
 
 ::-webkit-scrollbar {
@@ -17,6 +17,7 @@ body {
 }
 
 :root {
+    --body-background: #fff;
     --content-background: #f1f1f1;
     --text-color: #333;
     --border-radius: 5px;
@@ -26,7 +27,7 @@ body {
 .main-title {
     color: white;
     font-size: 4em;
-    text-shadow: 2px 2px var(--text-color);
+    text-shadow: 2px 2px #333;
 }
 
 .flex-center {
@@ -80,7 +81,7 @@ a {
 nav a, nav a:visited, nav a:active {
     display: block;
     padding: 14px 16px;
-    color: var(--content-background);
+    color: #ddd;
 }
 
 a:hover,
@@ -121,7 +122,6 @@ a:hover,
     transition: .2s ease-in-out;
     height: 200px;
     width: 100%;
-    box-shadow: 0px 2px 2px gray;
 }
 
 .form-element {
@@ -203,6 +203,16 @@ button#spin:hover {
     border: 6px solid var(--primary-blue);
     border-color: var(--primary-blue) transparent var(--primary-blue) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
+}
+
+#theme-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: url('../imgs/theme.png') no-repeat top left;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
 }
 
 @keyframes lds-dual-ring {
