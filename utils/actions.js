@@ -2,6 +2,18 @@
 
 class DOMActions {
 
+    static _setTheme(isDarkTheme) {
+        const themeObj = {
+            'content-background': isDarkTheme ? '#333' : '#f1f1f1',
+            'text-color': isDarkTheme ? '#ccc' : '#333',
+            'body-background': isDarkTheme ? '#444' : '#fff'
+        };
+        
+        for (const attr in themeObj) {
+            document.documentElement.style.setProperty(`--${attr}`, themeObj[attr]);
+        }
+    }
+
     static _sort(elements, order) {
         switch (order) {
             case 'name-asc':
@@ -80,6 +92,10 @@ class DOMActions {
         this.order = order;
         this.elements = [];
         this.info = info;
+        
+        const [themeStatus, darkTheme] = DOMActions._getFromStorage('darkTheme');
+        this.darkTheme = themeStatus ? darkTheme : false;
+        DOMActions._setTheme(this.darkTheme);
 
         const [status, data] = DOMActions._getFromStorage('data');
         if (status) this.elements = data;
@@ -226,5 +242,11 @@ class DOMActions {
             alert(`Looks like you're going to visit: ${this.visible[winner].name}`);
             div.remove();
         }, 4200);
+    }
+
+    toggleTheme() {
+        this.darkTheme = !this.darkTheme;
+        localStorage.setItem('darkTheme', this.darkTheme);
+        DOMActions._setTheme(this.darkTheme);
     }
 }

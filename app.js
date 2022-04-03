@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const pickRandom = document.querySelector('#pick-random');
     const clear = document.querySelector('#clear');
     const spinAction = document.querySelector('#spin');
+    const themeAction = document.querySelector('#theme-btn');
 
     const actions = new DOMActions(content, search, order, info);
 
@@ -26,6 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     clear.addEventListener('click', () => actions.clear());
     spinAction.addEventListener('click', () => actions.spinTheWheel());
     order.addEventListener('change', () => actions.render());
+    themeAction.addEventListener('click', () => actions.toggleTheme());
     search.addEventListener('keydown', event => {
         if (event.key == "Enter") {
             actions.render();

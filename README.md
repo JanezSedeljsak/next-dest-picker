@@ -9,6 +9,7 @@ Project was built using only `Vanilla JS`.
 - [BANNER](https://images8.alphacoders.com/104/thumb-1920-1043923.jpg)
 - [SPINNER](https://loading.io/css/)
 - [ROTATION](https://stackoverflow.com/questions/16771225/css3-rotate-animation)
+- [THEMEICON](https://cdn.iconscout.com/icon/free/png-256/theme-8-461757.png)
 
 ## Features
 - Get random country by clicking "Get country" (can't add duplicates and new country has to match query in search input)
@@ -19,6 +20,7 @@ Project was built using only `Vanilla JS`.
 - Get location of country by clicking "Google maps"
 - Get path from current location to country by clicking "Travel to `{countryName}`" (geolocation has to be enabled)
 - Wheel of fortune to pick the final destination (static size 4 sections)
+- Default(light) + Dark theme (switch with button in the bottom right)
 
 ## Authors
 
