@@ -21,6 +21,8 @@ Project was built using only `Vanilla JS`.
 - Get path from current location to country by clicking "Travel to `{countryName}`" (geolocation has to be enabled)
 - Wheel of fortune to pick the final destination (static size 4 sections)
 - Default(light) + Dark theme (switch with button in the bottom right)
+- Edit countries (set your own name, capital or region)
+- Reset edited countries to default values
 
 ## Authors
 
