@@ -12,8 +12,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const clear = document.querySelector('#clear');
     const spinAction = document.querySelector('#spin');
     const themeAction = document.querySelector('#theme-btn');
+    const downAction = document.querySelector('#down-btn');
 
     const actions = new DOMActions(content, search, order, info);
+    const scrollThreshold = window.innerHeight - 50;
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
@@ -27,10 +29,18 @@ window.addEventListener('DOMContentLoaded', () => {
     clear.addEventListener('click', () => actions.clear());
     spinAction.addEventListener('click', () => actions.spinTheWheel());
     order.addEventListener('change', () => actions.render());
-    themeAction.addEventListener('click', () => actions.toggleTheme());
     search.addEventListener('keydown', event => {
         if (event.key == "Enter") {
             actions.render();
         }
+    });
+
+    themeAction.addEventListener('click', () => actions.toggleTheme());
+    downAction.addEventListener('click', () => {
+        window.scrollTo({ top: scrollThreshold, left: 0, behavior: 'smooth' });
+    });
+
+    document.addEventListener('scroll', () => {
+        downAction.style.transform = `scaleY(${window.scrollY < scrollThreshold ? '1' : '-1'})`;
     });
 });

@@ -1,13 +1,3 @@
-.modal-wrapper {
-    position: fixed;
-    flex-direction: column;
-    background-color: #85858593;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-}
-
 .arrow {
     height: 30px;
     width: 30px;

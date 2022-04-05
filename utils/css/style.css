@@ -18,7 +18,7 @@ body {
 
 :root {
     --body-background: #fff;
-    --content-background: #f1f1f1;
+    --content-background: #eee;
     --text-color: #333;
     --border-radius: 5px;
     --primary-blue: #1c979b;
@@ -78,7 +78,9 @@ a {
     color: var(--text-color);
 }
 
-nav a, nav a:visited, nav a:active {
+nav a,
+nav a:visited,
+nav a:active {
     display: block;
     padding: 14px 16px;
     color: #ddd;
@@ -89,11 +91,19 @@ a:hover,
     color: #aaa !important;
 }
 
+label {
+    padding-left: 5px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     background-color: var(--content-background);
     border-radius: var(--border-radius);
+}
+
+.card-edited {
+    border-bottom: 5px solid var(--primary-blue);
 }
 
 .card-content {
@@ -111,13 +121,13 @@ a:hover,
     width: 100%;
 }
 
-.card-content a, .card-content a:visited {
+.card-content a,
+.card-content a:visited {
     color: var(--primary-blue);
 }
 
 .card img {
     object-fit: cover;
-    margin-right: 15px;
     border-radius: var(--border-radius);
     transition: .2s ease-in-out;
     height: 200px;
@@ -137,7 +147,7 @@ a:hover,
     background-color: var(--content-background);
 }
 
-button {
+button:not(.ico-button) {
     border: 1px solid transparent;
     border-radius: var(--border-radius);
     height: 36px;
@@ -147,19 +157,28 @@ button {
     margin: 5px 0;
 }
 
-button[disabled] {
+button[disabled]:not(.ico-button) {
     pointer-events: none;
     background-color: #999 !important;
     color: #666 !important;
 }
 
-button#spin {
+button.primary {
     background-color: var(--primary-blue);
 }
 
-button#spin:hover {
+button.primary:hover {
     cursor: pointer;
     background-color: #0d595c;
+}
+
+button.secondary {
+    background-color: #5781a8;
+}
+
+button.secondary:hover {
+    cursor: pointer;
+    background-color: rgb(11, 44, 71);
 }
 
 .del-button {
@@ -205,14 +224,67 @@ button#spin:hover {
     animation: lds-dual-ring 1.2s linear infinite;
 }
 
-#theme-btn {
+.modal-wrapper {
     position: fixed;
+    flex-direction: column;
+    background-color: #85858593;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    background-color: var(--body-background);
+    border-radius: var(--border-radius);
+    animation: fadein .5s;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: var(--primary-blue);
+    border-radius: var(--border-radius);
+}
+
+.modal-header>h2,
+#exit {
+    color: #eee;
+}
+
+#exit:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.ico-button {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    border: none;
+}
+
+#theme-btn {
     right: 20px;
     bottom: 20px;
     background: url('../imgs/theme.png') no-repeat top left;
     background-size: cover;
-    height: 50px;
-    width: 50px;
+}
+
+#down-btn {
+    right: 80px;
+    bottom: 20px;
+    background: url('../imgs/down.png') no-repeat top left;
+    background-size: cover;
+    display: none;
+}
+
+.modal form {
+    margin: 20px;
 }
 
 @keyframes lds-dual-ring {
@@ -221,7 +293,18 @@ button#spin:hover {
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1024px) {
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1024px) {
     #travel-cards {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -236,5 +319,11 @@ button#spin:hover {
 @media screen and (min-width: 1681px) {
     #travel-cards {
         grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #down-btn {
+        display: block;
     }
 }
